@@ -1,3 +1,5 @@
+mod guss_game;
+
 fn main() {
     let s1: &str = "hello string";
     println!("s1: {}", s1);
@@ -14,6 +16,10 @@ fn main() {
     // 返回值与作用域
 
     test_vect_capacity();
+
+    use_after_free_prevented();
+    // call the guessing game from the separate module
+    guss_game::run();
 }
 
 fn test_vect_capacity() {
@@ -27,7 +33,6 @@ fn test_vect_capacity() {
     println!("Len: {}, Capacity: {}", v.len(), v.capacity()); // Len: 6, Capacity: 6
     v.push(7);
     println!("Len: {}, Capacity: {}", v.len(), v.capacity()); // Len: 7, Capacity: 12
-    print!("s4: {}", s4);
 
     // 返回值与作用域
     let s5 = String::from("lake");
@@ -165,4 +170,10 @@ fn test_loop1() {
     for c in 'a'..='e' {
         println!("c is {}", c);
     }
+}
+fn use_after_free_prevented() {
+    let s = String::from("hello");
+    let r = &s;
+    let _s2 = s.clone(); // clone instead of moving while borrowed
+    println!("r: {}", r);
 }
