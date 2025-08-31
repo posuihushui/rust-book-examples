@@ -75,6 +75,7 @@ fn struct_demo() {
     test_type();
     test_add_number();
     test_vector();
+    test_loop1();
 }
 
 
@@ -138,4 +139,17 @@ fn test_vector(){
     println!("Len: {}, Capacity: {}", v.len(), v.capacity()); // 输出: Len: 3, Capacity: 3
     v.push(4); // 触发扩容
     println!("Len: {}, Capacity: {}", v.len(), v.capacity()); // 输出: Len: 4, Capacity: 6
+}
+fn test_loop1(){
+    let mut sum: i32 = 0;
+    for i in -3..1 {
+        sum += i;
+        println!("i is {} , sum current is {}",i,sum);
+    }
+    for i in -3..=1 {
+        println!("i is {}",i);
+    }
+    for c in 'a'..='e' {
+        println!("c is {}",c);
+    }
 }
